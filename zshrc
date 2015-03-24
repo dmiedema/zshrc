@@ -15,6 +15,9 @@ export EDITOR='vim'
 # load up oh-my-zsh
 antigen use oh-my-zsh
 
+# Enable zsh-completions
+fpath=(/usr/local/share/zsh-completions $fpath)
+
 antigen bundles <<EOBUNDLES
   # Git stuff
   git
