@@ -50,6 +50,7 @@ antigen bundles <<EOBUNDLES
   hchbaw/opp.zsh
 
   # This take care of theme
+  mafredri/zsh-async
   # sindresorhus/pure
   dmiedema/pure
 EOBUNDLES
