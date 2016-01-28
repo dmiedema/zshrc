@@ -1,5 +1,11 @@
 # Get Source
 # not an option
+if [[ ! -a "$HOME/.zgen/zgen.zsh" ]]; then
+  echo "You need to clone zgen."
+  echo  "git clone https://github.com/tarjoilija/zgen ~/.zgen"
+  exit 127
+fi
+
 source "$HOME/.zgen/zgen.zsh"
 # optional
 [[ -a "$HOME/.aliases" ]]     && source "$HOME/.aliases"
