@@ -49,6 +49,7 @@ if ! zgen saved; then
     rupa/z
     # Vim mode?
     hchbaw/opp.zsh
+    rimraf/k
 
     # This take care of theme
     mafredri/zsh-async
