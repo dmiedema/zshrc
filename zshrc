@@ -43,7 +43,8 @@ if ! zgen saved; then
     Tarrasch/zsh-bd
     tmuxinator/tmuxinator
     zsh-users/zsh-syntax-highlighting
-    zsh-users/zsh-completions
+    # zsh-users/zsh-completions
+    dmiedema/zsh-completions
     arialdomartini/oh-my-git
     zsh-users/zsh-history-substring-search
     rupa/z
@@ -67,4 +68,8 @@ fi
 # zle -N zle-line-init
 # Accept suggested word without leaving insert mode
 # bindkey '^f' vi-forward-word
+
+function history_search() {
+  cat ~/.zsh_history | ack "$1"
+}
 
