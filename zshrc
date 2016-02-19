@@ -34,6 +34,11 @@ if ! zgen saved; then
   zgen oh-my-zsh plugins/osx
   zgen oh-my-zsh plugins/xcode
   zgen oh-my-zsh plugins/brew
+  zgen oh-my-zsh plugins/rsync
+  zgen oh-my-zsh plugins/colored-man-pages
+  zgen oh-my-zsh plugins/jira
+  zgen oh-my-zsh plugins/vim-interaction
+  # zgen oh-my-zsh plugins/vi-mode
 
   zgen loadall <<EOBUNDLES
 
@@ -43,8 +48,8 @@ if ! zgen saved; then
     Tarrasch/zsh-bd
     tmuxinator/tmuxinator
     zsh-users/zsh-syntax-highlighting
-    # zsh-users/zsh-completions
-    dmiedema/zsh-completions
+    zsh-users/zsh-completions
+    # dmiedema/zsh-completions agvtool
     arialdomartini/oh-my-git
     zsh-users/zsh-history-substring-search
     rupa/z
@@ -73,4 +78,7 @@ fi
 function history_search() {
   cat ~/.zsh_history | ack "$1"
 }
+
+# OS X / Homebrew specific
+export HOMEBREW_BUILD_FROM_SOURCE=1
 
