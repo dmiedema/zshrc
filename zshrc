@@ -79,6 +79,12 @@ function history_search() {
   cat ~/.zsh_history | ack "$1"
 }
 
+function trash() {
+  mv $1 ~/.Trash/
+}
+
 # OS X / Homebrew specific
 export HOMEBREW_BUILD_FROM_SOURCE=1
+
+[[ -a "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
 
