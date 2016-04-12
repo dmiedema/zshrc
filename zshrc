@@ -47,6 +47,7 @@ if ! zgen saved; then
     # Meta?
     Tarrasch/zsh-bd
     tmuxinator/tmuxinator
+    zsh-users/zsh-autosuggestions
     zsh-users/zsh-syntax-highlighting
     zsh-users/zsh-completions
     # dmiedema/zsh-completions agvtool
@@ -54,7 +55,6 @@ if ! zgen saved; then
     zsh-users/zsh-history-substring-search
     rupa/z
     # Vim mode?
-    hchbaw/opp.zsh
     rimraf/k
 
     # This take care of theme
@@ -67,13 +67,8 @@ EOBUNDLES
 fi
 
 # zsh-autosuggestions
-# Start the server
-#zle-line-init() {
-  # zle autosuggest-start
-# }
-# zle -N zle-line-init
 # Accept suggested word without leaving insert mode
-# bindkey '^f' vi-forward-word
+bindkey '^f' vi-forward-word
 
 function history_search() {
   cat ~/.zsh_history | ack "$1"
@@ -87,4 +82,7 @@ function trash() {
 export HOMEBREW_BUILD_FROM_SOURCE=1
 
 [[ -a "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
+
+# added by travis gem
+[ -f /Users/daniel/.travis/travis.sh ] && source /Users/daniel/.travis/travis.sh
 
