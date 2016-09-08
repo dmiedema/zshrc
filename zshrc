@@ -63,8 +63,11 @@ if ! zgen saved; then
     mafredri/zsh-async
     # sindresorhus/pure
     dmiedema/pure
+
+    paulirish/git-recent
 EOBUNDLES
 
+  ln -s $HOME/.zgen/paulirish/git-recent-master/git-recent /usr/local/bin/
   zgen save
 fi
 
