@@ -11,8 +11,43 @@ source "$HOME/.zgen/zgen.zsh"
 [[ -a "$HOME/.aliases" ]]     && source "$HOME/.aliases"
 [[ -a "$HOME/.zsh_path" ]]    && source "$HOME/.zsh_path"
 
+###
+### Default Aliases I want everywhere
+###
+# Directory Listing
+alias lsa='ls -lah'
+alias l='ls -lah'
+alias ll='ls -lh'
+alias la='ls -lAh'
+
+# Setup History
+if [ -z "$HISTFILE" ]; then
+  HISTFILE=$HOME/.zsh_history
+fi
+
+# Largest History. Because Yes
+HISTSIZE=100000
+SAVEHIST=100000
+
+# Show History
+case $HIST_STAMPS in
+  "mm/dd/yyyy") alias history='fc -fl 1' ;;
+  "dd.mm.yyyy") alias history='fc -El 1' ;;
+  "yyyy-mm-dd") alias history='fc -il 1' ;;
+  *) alias history='fc -l 1' ;;
+esac
+
+
 # setup independent histories for each zsh session
-setopt append_history no_inc_append_history no_share_history
+setopt append_history # Append our histories
+setopt no_inc_append_history 
+setopt no_share_history #independent histories
+setopt extended_history
+setopt hist_expire_dups_first
+setopt hist_ignore_dups # ignore duplication command history list
+setopt hist_ignore_space
+setopt hist_verify
+setopt auto_cd
 
 # ZGEN_RESET_ON_CHANGE(${HOME}/.zshrc ${HOME}/.zshrc.local)
 
@@ -20,9 +55,6 @@ setopt append_history no_inc_append_history no_share_history
 export EDITOR='vim'
 
 if ! zgen saved; then
-  # load up oh-my-zsh
-  zgen oh-my-zsh
-
   # Enable zsh-completions
   fpath=(/usr/local/share/zsh-completions $fpath)
 
