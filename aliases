@@ -1,0 +1,8 @@
+alias vi=vim
+alias plistbuddy=/usr/libexec/PlistBuddy
+alias ls='ls -G'
+
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
