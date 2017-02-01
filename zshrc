@@ -11,21 +11,6 @@ source "$HOME/.zgen/zgen.zsh"
 [[ -a "$HOME/.aliases" ]]     && source "$HOME/.aliases"
 [[ -a "$HOME/.zsh_path" ]]    && source "$HOME/.zsh_path"
 
-###
-### Default Aliases I want everywhere
-###
-# Directory Listing
-alias lsa='ls -lah'
-alias l='ls -lah'
-alias ll='ls -lh'
-alias la='ls -lAh'
-
-# Git aliases
-alias gst='git status'
-alias gp='git pull'
-alias gd='git diff'
-alias gc='git commit -v'
-
 if [[ "${terminfo[kcbt]}" != "" ]]; then
     bindkey "${terminfo[kcbt]}" reverse-menu-complete   # [Shift-Tab] - move through the completion menu backwards
 fi

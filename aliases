@@ -1,8 +1,24 @@
-alias vi=vim
-alias plistbuddy=/usr/libexec/PlistBuddy
+###
+### Default Aliases I want everywhere
+###
+# Directory Listing
 alias ls='ls -G'
+alias lsa='ls -lah'
+alias l='ls -lah'
+alias ll='ls -lh'
+alias la='ls -lAh'
+
+alias vi=vim
+
+# Git aliases
+alias gst='git status'
+alias gp='git push'
+alias gl='git pull'
+alias gd='git diff'
+alias gc='git commit -v'
+
+alias plistbuddy=/usr/libexec/PlistBuddy
 
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
-
