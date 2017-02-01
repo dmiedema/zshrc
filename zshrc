@@ -8,8 +8,8 @@ fi
 
 source "$HOME/.zgen/zgen.zsh"
 # optional
-[[ -a "$HOME/.aliases" ]]     && source "$HOME/.aliases"
-[[ -a "$HOME/.zsh_path" ]]    && source "$HOME/.zsh_path"
+[[ -a "$HOME/.aliases" ]]  && source "$HOME/.aliases"
+[[ -a "$HOME/.zsh_path" ]] && source "$HOME/.zsh_path"
 
 if [[ "${terminfo[kcbt]}" != "" ]]; then
     bindkey "${terminfo[kcbt]}" reverse-menu-complete   # [Shift-Tab] - move through the completion menu backwards
@@ -160,6 +160,7 @@ function trash() {
 # export HOMEBREW_BUILD_FROM_SOURCE=1
 export HOMEBREW_NO_ANALYTICS=1
 
-[[ -a "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
+[[ -a "$HOME/.zshrc.local" ]]   && source "$HOME/.zshrc.local"
+[[ -a "$HOME/.aliases.local" ]] && source "$HOME/.aliases.local"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
