@@ -148,6 +148,13 @@ fi
 # Accept suggested word without leaving insert mode
 bindkey '^f' vi-forward-word
 
+# Setup edit-command-line
+# Bound to <esc> v
+bindkey -v
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
+
 function history_search() {
   cat ~/.zsh_history | ack "$1"
 }
