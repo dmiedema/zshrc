@@ -11,118 +11,137 @@ source "$HOME/.zgen/zgen.zsh"
 [[ -a "$HOME/.aliases" ]]  && source "$HOME/.aliases"
 [[ -a "$HOME/.zsh_path" ]] && source "$HOME/.zsh_path"
 
-if [[ "${terminfo[kcbt]}" != "" ]]; then
-    bindkey "${terminfo[kcbt]}" reverse-menu-complete   # [Shift-Tab] - move through the completion menu backwards
-fi
+# if [[ "${terminfo[kcbt]}" != "" ]]; then
+#     bindkey "${terminfo[kcbt]}" reverse-menu-complete   # [Shift-Tab] - move through the completion menu backwards
+# fi
 
-# Setup History
-if [ -z "$HISTFILE" ]; then
-  HISTFILE=$HOME/.zsh_history
-fi
+# # Setup History
+# if [ -z "$HISTFILE" ]; then
+#   HISTFILE=$HOME/.zsh_history
+# fi
 
-# Largest History. Because Yes
-HISTSIZE=100000
-SAVEHIST=100000
+# # Largest History. Because Yes
+# HISTSIZE=100000
+# SAVEHIST=100000
 
-# Show History
-case $HIST_STAMPS in
-  "mm/dd/yyyy") alias history='fc -fl 1' ;;
-  "dd.mm.yyyy") alias history='fc -El 1' ;;
-  "yyyy-mm-dd") alias history='fc -il 1' ;;
-  *) alias history='fc -l 1' ;;
-esac
+# # Show History
+# case $HIST_STAMPS in
+#   "mm/dd/yyyy") alias history='fc -fl 1' ;;
+#   "dd.mm.yyyy") alias history='fc -El 1' ;;
+#   "yyyy-mm-dd") alias history='fc -il 1' ;;
+#   *) alias history='fc -l 1' ;;
+# esac
 
-# recognize comments
-setopt interactivecomments
+# # recognize comments
+# setopt interactivecomments
 
-# setup independent histories for each zsh session
-setopt append_history # Append our histories
-setopt no_inc_append_history 
-setopt no_share_history #independent histories
-setopt extended_history
-setopt hist_expire_dups_first
-setopt hist_ignore_dups # ignore duplication command history list
-setopt hist_ignore_space
-setopt hist_verify
-setopt auto_cd
+# # setup independent histories for each zsh session
+# setopt append_history # Append our histories
+# setopt no_inc_append_history 
+# setopt no_share_history #independent histories
+# setopt extended_history
+# setopt hist_expire_dups_first
+# setopt hist_ignore_dups # ignore duplication command history list
+# setopt hist_ignore_space
+# setopt hist_verify
+# setopt auto_cd
 
-# Completion stuff
-unsetopt menu_complete
-unsetopt flowcontrol
-setopt auto_menu
-setopt complete_in_word
-setopt always_to_end
-# should this be in keybindings?
-bindkey -M menuselect '^o' accept-and-infer-next-history
-zstyle ':completion:*:*:*:*:*' menu select
+# # Completion stuff
+# unsetopt menu_complete
+# unsetopt flowcontrol
+# setopt auto_menu
+# setopt complete_in_word
+# setopt always_to_end
+# # should this be in keybindings?
+# # bindkey -M menuselect '^o' accept-and-infer-next-history
+# zstyle ':completion:*:*:*:*:*' menu select
 
-# case insensitive (all), partial-word and substring completion
-if [[ "$CASE_SENSITIVE" = true ]]; then
-  zstyle ':completion:*' matcher-list 'r:|=*' 'l:|=* r:|=*'
-else
-  if [[ "$HYPHEN_INSENSITIVE" = true ]]; then
-    zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|=*' 'l:|=* r:|=*'
-  else
-    zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
-  fi
-fi
-unset CASE_SENSITIVE HYPHEN_INSENSITIVE
+# # case insensitive (all), partial-word and substring completion
+# if [[ "$CASE_SENSITIVE" = true ]]; then
+#   zstyle ':completion:*' matcher-list 'r:|=*' 'l:|=* r:|=*'
+# else
+#   if [[ "$HYPHEN_INSENSITIVE" = true ]]; then
+#     zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|=*' 'l:|=* r:|=*'
+#   else
+#     zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
+#   fi
+# fi
+# unset CASE_SENSITIVE HYPHEN_INSENSITIVE
 
-zstyle ':completion:*' list-colors ''
-zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
+# zstyle ':completion:*' list-colors ''
+# zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
 
-zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm -w -w"
+# zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm -w -w"
 
-# disable named-directories autocompletion
-zstyle ':completion:*:cd:*' tag-order local-directories directory-stack path-directories
-# Use caching so that commands like apt and dpkg complete are useable
-zstyle ':completion::complete:*' use-cache 1
-zstyle ':completion::complete:*' cache-path $ZSH_CACHE_DIR
+# # disable named-directories autocompletion
+# zstyle ':completion:*:cd:*' tag-order local-directories directory-stack path-directories
+# # Use caching so that commands like apt and dpkg complete are useable
+# zstyle ':completion::complete:*' use-cache 1
+# zstyle ':completion::complete:*' cache-path $ZSH_CACHE_DIR
 
-# Don't complete uninteresting users
-zstyle ':completion:*:*:*:users' ignored-patterns \
-        adm amanda apache at avahi avahi-autoipd beaglidx bin cacti canna \
-        clamav daemon dbus distcache dnsmasq dovecot fax ftp games gdm \
-        gkrellmd gopher hacluster haldaemon halt hsqldb ident junkbust kdm \
-        ldap lp mail mailman mailnull man messagebus  mldonkey mysql nagios \
-        named netdump news nfsnobody nobody nscd ntp nut nx obsrun openvpn \
-        operator pcap polkitd postfix postgres privoxy pulse pvm quagga radvd \
-        rpc rpcuser rpm rtkit scard shutdown squid sshd statd svn sync tftp \
-        usbmux uucp vcsa wwwrun xfs '_*'
+# # Don't complete uninteresting users
+# zstyle ':completion:*:*:*:users' ignored-patterns \
+#         adm amanda apache at avahi avahi-autoipd beaglidx bin cacti canna \
+#         clamav daemon dbus distcache dnsmasq dovecot fax ftp games gdm \
+#         gkrellmd gopher hacluster haldaemon halt hsqldb ident junkbust kdm \
+#         ldap lp mail mailman mailnull man messagebus  mldonkey mysql nagios \
+#         named netdump news nfsnobody nobody nscd ntp nut nx obsrun openvpn \
+#         operator pcap polkitd postfix postgres privoxy pulse pvm quagga radvd \
+#         rpc rpcuser rpm rtkit scard shutdown squid sshd statd svn sync tftp \
+#         usbmux uucp vcsa wwwrun xfs '_*'
 
-# ... unless we really want to.
-zstyle '*' single-ignored show
+# # ... unless we really want to.
+# zstyle '*' single-ignored show
 
-if [[ $COMPLETION_WAITING_DOTS = true ]]; then
-  expand-or-complete-with-dots() {
-    # toggle line-wrapping off and back on again
-    [[ -n "$terminfo[rmam]" && -n "$terminfo[smam]" ]] && echoti rmam
-    print -Pn "%{%F{red}......%f%}"
-    [[ -n "$terminfo[rmam]" && -n "$terminfo[smam]" ]] && echoti smam
+# if [[ $COMPLETION_WAITING_DOTS = true ]]; then
+#   expand-or-complete-with-dots() {
+#     # toggle line-wrapping off and back on again
+#     [[ -n "$terminfo[rmam]" && -n "$terminfo[smam]" ]] && echoti rmam
+#     print -Pn "%{%F{red}......%f%}"
+#     [[ -n "$terminfo[rmam]" && -n "$terminfo[smam]" ]] && echoti smam
 
-    zle expand-or-complete
-    zle redisplay
-  }
-  zle -N expand-or-complete-with-dots
-  bindkey "^I" expand-or-complete-with-dots
-fi
+#     zle expand-or-complete
+#     zle redisplay
+#   }
+#   zle -N expand-or-complete-with-dots
+#   bindkey "^I" expand-or-complete-with-dots
+# fi
 
-bindkey '^[[1;5C' forward-word                        # [Ctrl-RightArrow] - move forward one word
-bindkey '^[[1;5D' backward-word                       # [Ctrl-LeftArrow] - move backward one word
-bindkey ' ' magic-space                               # [Space] - do history expansion
+# # Make sure that the terminal is in application mode when zle is active, since
+# # only then values from $terminfo are valid
+# if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
+#   function zle-line-init() {
+#     echoti smkx
+#   }
+#   function zle-line-finish() {
+#     echoti rmkx
+#   }
+#   zle -N zle-line-init
+#   zle -N zle-line-finish
+# fi
 
-# start typing + [Up-Arrow] - fuzzy find history forward
-if [[ "${terminfo[kcuu1]}" != "" ]]; then
-  autoload -U up-line-or-beginning-search
-  zle -N up-line-or-beginning-search
-  bindkey "${terminfo[kcuu1]}" up-line-or-beginning-search
-fi
-# start typing + [Down-Arrow] - fuzzy find history backward
-if [[ "${terminfo[kcud1]}" != "" ]]; then
-  autoload -U down-line-or-beginning-search
-  zle -N down-line-or-beginning-search
-  bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
-fi
+
+# bindkey -e                                            # Use emacs key bindings
+
+# bindkey '^[[1;5C' forward-word                        # [Ctrl-RightArrow] - move forward one word
+# bindkey '^[[1;5D' backward-word                       # [Ctrl-LeftArrow] - move backward one word
+# bindkey ' ' magic-space                               # [Space] - do history expansion
+# if [[ "${terminfo[kcbt]}" != "" ]]; then
+#   bindkey "${terminfo[kcbt]}" reverse-menu-complete   # [Shift-Tab] - move through the completion menu backwards
+# fi
+
+# # start typing + [Up-Arrow] - fuzzy find history forward
+# if [[ "${terminfo[kcuu1]}" != "" ]]; then
+#   autoload -U up-line-or-beginning-search
+#   zle -N up-line-or-beginning-search
+#   bindkey "${terminfo[kcuu1]}" up-line-or-beginning-search
+# fi
+# # start typing + [Down-Arrow] - fuzzy find history backward
+# if [[ "${terminfo[kcud1]}" != "" ]]; then
+#   autoload -U down-line-or-beginning-search
+#   zle -N down-line-or-beginning-search
+#   bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
+# fi
 
 
 # ZGEN_RESET_ON_CHANGE(${HOME}/.zshrc ${HOME}/.zshrc.local)
@@ -133,6 +152,8 @@ export EDITOR='vim'
 if ! zgen saved; then
   # Enable zsh-completions
   fpath=(/usr/local/share/zsh-completions $fpath)
+
+  zgen oh-my-zsh
 
   zgen loadall <<EOBUNDLES
 
@@ -172,7 +193,12 @@ bindkey '^f' vi-forward-word
 bindkey -v
 autoload -U edit-command-line
 zle -N edit-command-line
-bindkey -M vicmd v edit-command-line
+bindkey '\C-v' edit-command-line
+
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+bindkey '\eOA' history-substring-search-up
+bindkey '\eOB' history-substring-search-down
 
 function history_search() {
   cat ~/.zsh_history | ack "$1"
