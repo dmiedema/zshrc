@@ -22,3 +22,5 @@ alias plistbuddy=/usr/libexec/PlistBuddy
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
+
+alias https='http --default-scheme=https'
