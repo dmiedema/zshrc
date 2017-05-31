@@ -24,3 +24,10 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 
 alias https='http --default-scheme=https'
+
+alias learntotype=echo '🙄 learn to type.'
+alias sl='learntotype; ls'
+alias claer='clear; learntotype'
+alias gti='learntotype'
+alias pythong='learntotype; python'
+alias clearl='clear; learntotype; l'
