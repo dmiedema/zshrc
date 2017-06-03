@@ -39,8 +39,7 @@ if ! zgen saved; then
 
     # This take care of theme
     mafredri/zsh-async
-    # sindresorhus/pure
-    dmiedema/pure
+    sindresorhus/pure
 
     paulirish/git-recent
 EOBUNDLES
@@ -48,6 +47,10 @@ EOBUNDLES
   ln -s $HOME/.zgen/paulirish/git-recent-master/git-recent /usr/local/bin/
   zgen save
 fi
+
+# Redefine prompt to conditionally add number of susupended jobs
+# if we have 1 or more. Oterwise prompt as normal
+PROMPT='%(1j.[%j] .)%(?.%F{magenta}.%F{red})${PURE_PROMPT_SYMBOL:-❯}%f '
 
 # zsh-autosuggestions
 # Accept suggested word without leaving insert mode
