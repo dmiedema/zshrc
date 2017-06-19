@@ -48,9 +48,18 @@ EOBUNDLES
   zgen save
 fi
 
-# Redefine prompt to conditionally add number of susupended jobs
-# if we have 1 or more. Oterwise prompt as normal
-PROMPT='%(1j.[%j] .)%(?.%F{magenta}.%F{red})${PURE_PROMPT_SYMBOL:-❯}%f '
+# Get our current virtualenv if we have one
+# if we do, prepend to the entire prompt.
+# Add conditionally the number of susupended jobs
+# if we have 1 or more. Otherwise prompt as normal
+# We run it as a precmd so it is evaluated after
+# just launch
+precmd() {
+  PROMPT='%F{yellow}%(1j.[%j] .)%(?.%F{magenta}.%F{red})${PURE_PROMPT_SYMBOL:-❯}%f '
+  if [ -n "$VIRTUAL_ENV" ]; then
+    PROMPT='%F{white}($(basename $VIRTUAL_ENV)) %F{yellow}%(1j.[%j] .)%(?.%F{magenta}.%F{red})${PURE_PROMPT_SYMBOL:-❯}%f '
+  fi
+}
 
 # zsh-autosuggestions
 # Accept suggested word without leaving insert mode
