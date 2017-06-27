@@ -49,3 +49,8 @@ zz() {
 alias j=z
 alias jj=zz
 
+delete-merged-branches() {
+  for BRANCH in $(git show-merged-branches); do
+    git branch -d "$BRANCH"
+  done
+}
