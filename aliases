@@ -25,12 +25,10 @@ alias ....='cd ../../..'
 
 alias https='http --default-scheme=https'
 
-alias learntotype=echo '🙄 learn to type.'
-alias sl='learntotype; ls'
-alias claer='clear; learntotype'
-alias gti='learntotype'
-alias pythong='learntotype; python'
-alias clearl='clear; learntotype; l'
+alias sl='ls'
+alias claer='clear;'
+alias pythong='python'
+alias clearl='clear; l'
 
 unalias z
 z() {
@@ -50,7 +48,9 @@ alias j=z
 alias jj=zz
 
 delete-merged-branches() {
-  for BRANCH in $(git show-merged-branches); do
+  # List the currently merged branches, this includes the current branch which we can't delete
+  # so we send the list to grep & invert the match of our current branch. So its excluded
+  for BRANCH in $(git branch --merged | grep -v $(git rev-parse --abbrev-ref HEAD)); do
     git branch -d "$BRANCH"
   done
 }
