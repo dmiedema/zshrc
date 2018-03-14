@@ -85,6 +85,13 @@ function trash() {
   mv $1 ~/.Trash/
 }
 
+function submodule-status() {
+# this is a file checkout, do nothing
+  if [[ -a .gitmodules ]]; then
+    git submodule foreach --recursive 'echo "$(tput bold)$path$(tput sgr0) -- \033[1;35m`git rev-parse --abbrev-ref HEAD` \033[0m"'
+  fi
+}
+
 # OS X / Homebrew specific
 # export HOMEBREW_BUILD_FROM_SOURCE=1
 export HOMEBREW_NO_ANALYTICS=1
