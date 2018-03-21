@@ -92,6 +92,13 @@ function submodule-status() {
   fi
 }
 
+function fixup() {
+  git add "$@"
+  local hash = $(git log --oneline --shortstat | head -n 1 | awk '{print $1}')
+  git commit --fixup="$hash"
+  git rebase --interactive --autosquash "$hash"~1
+}
+
 # OS X / Homebrew specific
 # export HOMEBREW_BUILD_FROM_SOURCE=1
 export HOMEBREW_NO_ANALYTICS=1
