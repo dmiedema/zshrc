@@ -94,7 +94,7 @@ function submodule-status() {
 
 function fixup() {
   git add "$@"
-  local hash = $(git log --oneline --shortstat | head -n 1 | awk '{print $1}')
+  local hash=$(git log --oneline --shortstat | head -n 1 | awk '{print $1}')
   git commit --fixup="$hash"
   git rebase --interactive --autosquash "$hash"~1
 }
