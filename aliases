@@ -2,11 +2,12 @@
 ### Default Aliases I want everywhere
 ###
 # Directory Listing
-alias ls='ls -G'
-alias lsa='ls -lah'
+# alias ls='ls -G'
+alias ls='exa --git'
 alias l='ls -lah'
+alias lt='l --tree'
 alias ll='ls -lh'
-alias la='ls -lAh'
+alias la='ls -lah'
 alias wtf='man'
 
 alias vi=vim
@@ -14,6 +15,7 @@ alias vi=vim
 # Git aliases
 alias gst='git status'
 alias gp='git push'
+alias gpl='git push --force-with-lease'
 alias gl='git pull'
 alias gd='git diff'
 alias gc='git commit -v'
@@ -25,6 +27,8 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 
 alias https='http --default-scheme=https'
+
+alias make='mmake'
 
 alias sl='ls'
 alias claer='clear;'

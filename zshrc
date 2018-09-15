@@ -55,9 +55,9 @@ fi
 # We run it as a precmd so it is evaluated after
 # just launch
 precmd() {
-  PROMPT='%F{yellow}%(1j.[%j] .)%(?.%F{magenta}.%F{red})${PURE_PROMPT_SYMBOL:-❯}%f '
+  PROMPT='%F{yellow}%(1j.[%j] .)%(?.%F{green}.%F{red})${PURE_PROMPT_SYMBOL:-❯}%f '
   if [ -n "$VIRTUAL_ENV" ]; then
-    PROMPT='%F{white}($(basename $VIRTUAL_ENV)) %F{yellow}%(1j.[%j] .)%(?.%F{magenta}.%F{red})${PURE_PROMPT_SYMBOL:-❯}%f '
+    PROMPT='%F{white}($(basename $VIRTUAL_ENV)) %F{yellow}%(1j.[%j] .)%(?.%F{green}.%F{red})${PURE_PROMPT_SYMBOL:-❯}%f '
   fi
 }
 
