@@ -19,6 +19,7 @@ if ! zgen saved; then
   fpath=(/usr/local/share/zsh-completions $fpath)
 
   zgen oh-my-zsh
+  zgen oh-my-zsh plugins/git-extras
 
   zgen loadall <<EOBUNDLES
 
@@ -42,6 +43,8 @@ if ! zgen saved; then
     sindresorhus/pure
 
     paulirish/git-recent
+
+    zdharma/zsh-diff-so-fancy
 EOBUNDLES
 
   ln -s $HOME/.zgen/paulirish/git-recent-master/git-recent /usr/local/bin/
@@ -97,6 +100,10 @@ function fixup() {
   local hash=$(git log --oneline --shortstat | head -n 1 | awk '{print $1}')
   git commit --fixup="$hash"
   git rebase --interactive --autosquash "$hash"~1
+}
+
+function branch_search() {
+  git branch | fzf-tmux -d 15
 }
 
 # OS X / Homebrew specific
