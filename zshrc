@@ -19,6 +19,7 @@ if ! zgen saved; then
   fpath=(/usr/local/share/zsh-completions $fpath)
 
   zgen oh-my-zsh
+  zgen oh-my-zsh plugins/git-extras
 
   zgen loadall <<EOBUNDLES
 
@@ -45,6 +46,7 @@ if ! zgen saved; then
 
     wfxr/forgit
     b4b4r07/emoji-cli
+    zdharma/zsh-diff-so-fancy
 EOBUNDLES
 
   ln -s $HOME/.zgen/paulirish/git-recent-master/git-recent /usr/local/bin/
@@ -110,6 +112,10 @@ function video2gif() {
   else
     echo "'ffmpeg' is required to run 'video2gif'"
   fi
+}
+
+function branch_search() {
+  git branch | fzf-tmux -d 15
 }
 
 # OS X / Homebrew specific
