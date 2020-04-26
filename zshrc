@@ -42,6 +42,9 @@ if ! zgen saved; then
     sindresorhus/pure
 
     paulirish/git-recent
+
+    wfxr/forgit
+    b4b4r07/emoji-cli
 EOBUNDLES
 
   ln -s $HOME/.zgen/paulirish/git-recent-master/git-recent /usr/local/bin/
@@ -99,12 +102,28 @@ function fixup() {
   git rebase --interactive --autosquash "$hash"~1
 }
 
+function video2gif() {
+  if (( $+commands[ffmpeg] )); then
+    ffmpeg -y -i "${1}" -vf fps=${3:-10},scale=${2:-320}:-1:flags=lanczos,palettegen "${1}.png"
+    ffmpeg -i "${1}" -i "${1}.png" -filter_complex "fps=${3:-10},scale=${2:-320}:-1:flags=lanczos[x];[x][1:v]paletteuse" "${1}".gif
+    rm "${1}.png"
+  else
+    echo "'ffmpeg' is required to run 'video2gif'"
+  fi
+}
+
 # OS X / Homebrew specific
 # export HOMEBREW_BUILD_FROM_SOURCE=1
 export HOMEBREW_NO_ANALYTICS=1
+export HOMEBREW_NO_INSTALL_CLEANUP=1
 
 [[ -a "$HOME/.zshrc.local" ]]   && source "$HOME/.zshrc.local"
 [[ -a "$HOME/.aliases.local" ]] && source "$HOME/.aliases.local"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+fh() {
+  print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed -r 's/ *[0-9]*\*? *//' | sed -r 's/\\/\\\\/g')
+}
+
+source /Users/dmiedema/Library/Preferences/org.dystroy.broot/launcher/bash/br
