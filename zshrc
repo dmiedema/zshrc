@@ -40,7 +40,7 @@ if ! zgen saved; then
 
     # This take care of theme
     mafredri/zsh-async
-    sindresorhus/pure
+    sindresorhus/pure sindresorhus/pure main
 
     paulirish/git-recent
 
@@ -132,4 +132,3 @@ fh() {
   print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed -r 's/ *[0-9]*\*? *//' | sed -r 's/\\/\\\\/g')
 }
 
-source /Users/dmiedema/Library/Preferences/org.dystroy.broot/launcher/bash/br
