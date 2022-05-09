@@ -53,6 +53,10 @@ EOBUNDLES
   zgen save
 fi
 
+fpath+=$HOME/.zgen/sindresorhus/pure-main
+autoload -U promptinit; promptinit
+prompt pure
+
 # Get our current virtualenv if we have one
 # if we do, prepend to the entire prompt.
 # Add conditionally the number of susupended jobs
