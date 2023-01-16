@@ -127,12 +127,24 @@ function branch_search() {
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_NO_INSTALL_CLEANUP=1
 
+[[ :$PATH: == *:$HOME/bin:* ]] || PATH=$HOME/bin:$PATH
+export PATH="/opt/brew/bin:$PATH"
+
 [[ -a "$HOME/.zshrc.local" ]]   && source "$HOME/.zshrc.local"
 [[ -a "$HOME/.aliases.local" ]] && source "$HOME/.aliases.local"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[[ $- =~ i ]] && bindkey -r '\ec'
+bindkey '\eq' fzf-cd-widget
 
 fh() {
   print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed -r 's/ *[0-9]*\*? *//' | sed -r 's/\\/\\\\/g')
 }
+
+if type brew &>/dev/null; then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+  autoload -Uz compinit
+  compinit
+fi
 
