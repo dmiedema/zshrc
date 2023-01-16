@@ -1,0 +1,5 @@
+# set theme to base16
+--theme="base16"
+
+# use bash for *rc files
+--map-syntax "*rc*:Bourne Again Shell (bash)"
