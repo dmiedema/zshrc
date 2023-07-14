@@ -39,7 +39,7 @@ if ! zgen saved; then
     rimraf/k
 
     # This take care of theme
-    mafredri/zsh-async
+    mafredri/zsh-async mafredri/zsh-async main
     sindresorhus/pure sindresorhus/pure main
 
     paulirish/git-recent
@@ -148,3 +148,7 @@ if type brew &>/dev/null; then
   compinit
 fi
 
+
+fpath=(/Users/no_good_ones/.houston_autocomplete $fpath)
+autoload -U compinit
+compinit
