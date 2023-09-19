@@ -78,6 +78,7 @@ bindkey '^f' vi-forward-word
 # Bound to <esc> v
 bindkey -v
 autoload -U edit-command-line
+autoload zmv
 zle -N edit-command-line
 bindkey '\C-v' edit-command-line
 

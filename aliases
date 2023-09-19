@@ -12,6 +12,8 @@ alias ll='ls -lh'
 alias la='ls -lah'
 alias wtf='man'
 
+alias mmv='noglob zmv -W'
+
 alias vi=vim
 
 # Git aliases
