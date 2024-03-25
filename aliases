@@ -3,12 +3,16 @@
 ###
 # Directory Listing
 # alias ls='ls -G'
-alias ls='exa --git'
+if type "eza" &> /dev/null; then
+  alias ls='eza --git'
+fi
 alias l='ls -lah'
 alias lt='l --tree'
 alias ll='ls -lh'
 alias la='ls -lah'
 alias wtf='man'
+
+alias mmv='noglob zmv -W'
 
 alias vi=vim
 

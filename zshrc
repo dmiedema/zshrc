@@ -39,8 +39,13 @@ if ! zgen saved; then
     rimraf/k
 
     # This take care of theme
+
     mafredri/zsh-async mafredri/zsh-async main
     sindresorhus/pure sindresorhus/pure main
+
+    mafredri/zsh-async . main
+    sindresorhus/pure . main
+
 
     paulirish/git-recent
 
@@ -96,6 +101,7 @@ bindkey '^f' vi-forward-word
 # Bound to <esc> v
 bindkey -v
 autoload -U edit-command-line
+autoload zmv
 zle -N edit-command-line
 bindkey '\C-v' edit-command-line
 
@@ -166,3 +172,7 @@ if type brew &>/dev/null; then
   compinit
 fi
 
+
+fpath=(/Users/no_good_ones/.houston_autocomplete $fpath)
+autoload -U compinit
+compinit
