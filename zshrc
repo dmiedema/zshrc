@@ -39,8 +39,13 @@ if ! zgen saved; then
     rimraf/k
 
     # This take care of theme
+
+    mafredri/zsh-async mafredri/zsh-async main
+    sindresorhus/pure sindresorhus/pure main
+
     mafredri/zsh-async . main
     sindresorhus/pure . main
+
 
     paulirish/git-recent
 
@@ -68,7 +73,25 @@ precmd() {
   if [ -n "$VIRTUAL_ENV" ]; then
     PROMPT='%F{white}($(basename $VIRTUAL_ENV)) %F{yellow}%(1j.[%j] .)%(?.%F{green}.%F{red})${PURE_PROMPT_SYMBOL:-❯}%f '
   fi
+  RPROMPT="[\$(date +%H:%M:%S)]"
 }
+
+# ZLE hooks for prompt's vi mode status
+function zle-line-init zle-keymap-select {
+  # Change the cursor style depending on keymap mode.
+  # https://askubuntu.com/a/620306
+  case $KEYMAP {
+    vicmd)
+      printf '\e[0 q' # Box.
+      ;;
+
+    viins|main)
+      printf '\e[2 q' # Steady Box
+      ;;
+  }
+}
+zle -N zle-line-init
+zle -N zle-keymap-select
 
 # zsh-autosuggestions
 # Accept suggested word without leaving insert mode
