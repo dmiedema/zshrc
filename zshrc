@@ -40,9 +40,6 @@ if ! zgen saved; then
 
     # This take care of theme
 
-    mafredri/zsh-async mafredri/zsh-async main
-    sindresorhus/pure sindresorhus/pure main
-
     mafredri/zsh-async . main
     sindresorhus/pure . main
 
