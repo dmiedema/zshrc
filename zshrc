@@ -43,8 +43,7 @@ if ! zgen saved; then
     mafredri/zsh-async . main
     sindresorhus/pure . main
 
-
-    paulirish/git-recent
+    junegunn/fzf-git.sh . main
 
     wfxr/forgit
     b4b4r07/emoji-cli
