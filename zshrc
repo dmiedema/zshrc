@@ -149,6 +149,7 @@ export HOMEBREW_NO_INSTALL_CLEANUP=1
 
 [[ :$PATH: == *:$HOME/bin:* ]] || PATH=$HOME/bin:$PATH
 export PATH="/opt/brew/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 [[ -a "$HOME/.zshrc.local" ]]   && source "$HOME/.zshrc.local"
 [[ -a "$HOME/.aliases.local" ]] && source "$HOME/.aliases.local"
