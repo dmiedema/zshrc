@@ -41,7 +41,7 @@ if ! zgen saved; then
     # This take care of theme
 
     mafredri/zsh-async . main
-    sindresorhus/pure . main
+    dmiedema/pure . main
 
     junegunn/fzf-git.sh . main
 
@@ -149,6 +149,8 @@ export HOMEBREW_NO_INSTALL_CLEANUP=1
 
 [[ :$PATH: == *:$HOME/bin:* ]] || PATH=$HOME/bin:$PATH
 export PATH="/opt/brew/bin:$PATH"
+export PATH="/opt/homebrew/bin:$PATH"
+export PATH="$PATH:$(npm config get prefix)/bin"
 export PATH="$HOME/.local/bin:$PATH"
 
 [[ -a "$HOME/.zshrc.local" ]]   && source "$HOME/.zshrc.local"
@@ -171,5 +173,5 @@ fi
 
 
 fpath=(/Users/no_good_ones/.houston_autocomplete $fpath)
-autoload -U compinit
-compinit
+autoload -Uz compinit && compinit
+
