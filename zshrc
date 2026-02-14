@@ -171,7 +171,5 @@ if type brew &>/dev/null; then
   compinit
 fi
 
-
-fpath=(/Users/no_good_ones/.houston_autocomplete $fpath)
 autoload -Uz compinit && compinit
 
